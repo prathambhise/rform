@@ -1,0 +1,106 @@
+version1,2
+
+==============================vvvvv11111=============================================================================
+
+App.jsx
+
+
+import { useRef, useState } from 'react'
+import FormInput from "./components/FormInput.jsx"
+import './App.css'
+
+function App() {
+  
+  const [username, setUsername] = useState("hi")
+  
+  return (
+    <>
+      <div className='app'>
+        <p>{username}</p>  
+        <form action="">
+          <FormInput placeholder="Username" setUsername={setUsername}/>
+          <FormInput placeholder="Email"/>
+          <FormInput placeholder="Fullname"/>
+          <FormInput placeholder="Username"/>
+          <FormInput placeholder="sth else"/>
+        </form>
+      </div>
+    </>
+  )
+}
+
+export default App
+
+FormInput.jsx
+
+import "./formInput.css"
+
+const FormInput = (props) => {
+    return(
+        <div className="form-input">
+            <label>Username</label>
+            <input type="text" placeholder={props.placeholder} onChange={e=>props.setUsername(e.target.value)}/>
+        </div>
+    )
+}
+
+export default FormInput
+=================================================vvvvvvvv222222222222=================================================================
+
+App.jsx
+
+
+import { useRef, useState } from "react";
+import FormInput from "./components/FormInput.jsx";
+import "./App.css";
+
+function App() {
+  //const [username, setUsername] = useState("hi")
+
+  const usernameRef = useRef();
+
+  console.log("re-render");
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(usernameRef);
+  };
+
+  return (
+    <>
+      <div className="app">
+        <form onSubmit={handleSubmit}>
+          <FormInput refer={usernameRef} placeholder="Username" />
+          <FormInput placeholder="Email" />
+          <FormInput placeholder="Fullname" />
+          <FormInput placeholder="Username" />
+          <FormInput placeholder="sth else" />
+          <button>Submit</button>
+        </form>
+      </div>
+    </>
+  );
+}
+
+export default App;
+
+
+FormInput.jsx
+
+
+
+import "./formInput.css";
+
+const FormInput = (props) => {
+  return (
+    <div className="form-input">
+     {/* <label>Username</label>*/}
+      <input ref={props.refer} placeholder={props.placeholder} />
+    </div>
+  );
+};
+
+export default FormInput;
+
+
+=======================================================vvvvvvvvvvvv3333333333333333========================================================================
